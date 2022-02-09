@@ -91,7 +91,7 @@ async function listRepositories(reload = false) {
   const username = (await browser.storage.local.get('username')).username;
 
   const list = document.getElementById('repositories');
-  list.innerHTML = '';
+  list.innerHTML = 'Loading ...';
 
   if (!reload) {
     repositories = (await browser.storage.local.get('repositories')).repositories;
@@ -100,6 +100,8 @@ async function listRepositories(reload = false) {
   if (repositories === undefined) {
     repositories = await fetchRepositories();
   }
+
+  list.innerHTML = '';
 
   repositories.forEach(repository => {
     const li = document.createElement('li');

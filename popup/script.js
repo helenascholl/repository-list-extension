@@ -88,6 +88,7 @@ async function checkForErrors() {
 
 async function listRepositories(reload = false) {
   let repositories;
+  const username = (await browser.storage.local.get('username')).username;
 
   const list = document.getElementById('repositories');
   list.innerHTML = '';

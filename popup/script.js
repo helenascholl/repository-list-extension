@@ -35,7 +35,11 @@ async function fetchRepositories() {
   let pageEmpty = false;
 
   const list = document.getElementById('repositories');
+  const errorUserNotFound = document.getElementById('error-user-not-found');
+
   list.innerHTML = '';
+
+  errorUserNotFound.style.display = '';
 
   const { username, access_token } = await browser.storage.local.get([ 'username', 'access_token' ]);
 
@@ -43,24 +47,29 @@ async function fetchRepositories() {
     const url = `https://api.github.com/users/${username}/repos?type=all&sort=updated&per_page=100&page=${page}`;
 
     const response = await fetch(url, { headers: { Authorization: access_token } });
-    const repos = await response.json();
 
-    if (repos.length === 0) {
-      pageEmpty = true;
+    if (response.status === 404) {
+      errorUserNotFound.style.display = 'block';
     } else {
-      page++;
+      const repos = await response.json();
+
+      if (repos.length === 0) {
+        pageEmpty = true;
+      } else {
+        page++;
+      }
+
+      repositories.push(... repos);
+
+      repos.forEach(repo => {
+        const li = document.createElement('li');
+
+        li.innerText = repo.owner.login === username
+          ? repo.name
+          : `${repo.owner.login}/${repo.name}`;
+        list.appendChild(li);
+      });
     }
-
-    repositories.push(... repos);
-
-    repos.forEach(repo => {
-      const li = document.createElement('li');
-
-      li.innerText = repo.owner.login === username
-        ? repo.name
-        : `${repo.owner.login}/${repo.name}`;
-      list.appendChild(li);
-    });
   }
 }
 

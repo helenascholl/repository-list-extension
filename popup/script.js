@@ -96,7 +96,6 @@ async function checkForErrors() {
 
 async function loadRepositories(reload = false) {
   let repositories;
-  const username = (await browser.storage.local.get('username')).username;
 
   const list = document.getElementById('repositories');
   list.innerHTML = 'Loading ...';
@@ -110,6 +109,13 @@ async function loadRepositories(reload = false) {
   }
 
   repos = repositories;
+
+  listRepositories();
+}
+
+async function listRepositories(repositories = repos) {
+  const list = document.getElementById('repositories');
+  const username = (await browser.storage.local.get('username')).username;
 
   list.innerHTML = '';
 

@@ -92,3 +92,27 @@ async function checkForErrors() {
 
   return { error, values: { username, access_token } };
 }
+
+async function listRepositories(reload = false) {
+  let repositories;
+
+  const list = document.getElementById('repositories');
+  list.innerHTML = '';
+
+  if (!reload) {
+    repositories = await browser.storage.local.get('repositories').repositories;
+  }
+
+  if (repositories === undefined) {
+    repositories = await fetchRepositories();
+  }
+
+  repositories.forEach(repository => {
+    const li = document.createElement('li');
+
+    li.innerText = repository.owner.login === username
+      ? repository.name
+      : `${repository.owner.login}/${repository.name}`;
+    list.appendChild(li);
+  });
+}

@@ -5,8 +5,8 @@
   "description": "A simple popup to quickly access all your repositories.",
   "homepage_url": "https://github.com/schollsebastian/repository-list-extension#readme",
   "icons": {
-    "48": "icons/icons.svg",
-    "96": "icons/icons.svg"
+    "48": "icons/git.svg",
+    "96": "icons/git.svg"
   },
   "permissions": [
     "activeTab"

@@ -1,3 +1,5 @@
+let repos = [];
+
 window.addEventListener('DOMContentLoaded', () => {
   init();
 
@@ -106,6 +108,8 @@ async function listRepositories(reload = false) {
   if (repositories === undefined) {
     repositories = await fetchRepositories();
   }
+
+  repos = repositories;
 
   list.innerHTML = '';
 

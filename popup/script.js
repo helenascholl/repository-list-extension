@@ -16,6 +16,10 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('reload').addEventListener('click', () => {
     loadRepositories(true);
   });
+
+  document.getElementById('search').addEventListener('input', e => {
+    search(e.target.value);
+  });
 });
 
 async function init() {

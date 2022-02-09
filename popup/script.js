@@ -29,6 +29,8 @@ async function init() {
     document.getElementById('username').value = result.values.username;
     document.getElementById('access-token').value = result.values.access_token;
   }
+
+  document.getElementById('search').focus();
 }
 
 async function fetchRepositories() {

@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('reload').addEventListener('click', () => {
-    listRepositories(true);
+    loadRepositories(true);
   });
 });
 
@@ -88,13 +88,13 @@ async function checkForErrors() {
   }
 
   if (!error){
-    listRepositories();
+    loadRepositories();
   }
 
   return { error, values: { username, access_token } };
 }
 
-async function listRepositories(reload = false) {
+async function loadRepositories(reload = false) {
   let repositories;
   const username = (await browser.storage.local.get('username')).username;
 

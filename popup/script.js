@@ -113,3 +113,11 @@ async function listRepositories(reload = false) {
     list.appendChild(li);
   });
 }
+
+function log(message) {
+  const debug = document.getElementById('debug');
+  debug.style.display = 'block';
+  debug.innerText += typeof message === 'object' || typeof message === 'array'
+    ? `${JSON.stringify(message)}\n`
+    : `${message}\n`;
+}

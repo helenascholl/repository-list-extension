@@ -1,3 +1,7 @@
 .error {
   display: none;
 }
+
+#debug {
+  display: none;
+}

@@ -42,7 +42,13 @@ async function fetchRepositories() {
     if (response.status === 404) {
       errorUserNotFound.style.display = 'block';
     } else {
-      const repositories = await response.json();
+      const repositories = (await response.json()).map(r => {
+        return {
+          name: r.name,
+          url: r.html_url,
+          owner: r.owner.login
+        }
+      });
 
       if (repositories.length === 0) {
         pageEmpty = true;
@@ -107,10 +113,10 @@ async function listRepositories(reload = false) {
     const li = document.createElement('li');
     const a = document.createElement('a');
 
-    a.innerText = repository.owner.login === username
+    a.innerText = repository.owner === username
       ? repository.name
-      : `${repository.owner.login}/${repository.name}`;
-    a.href = repository.html_url;
+      : `${repository.owner}/${repository.name}`;
+    a.href = repository.url;
 
     li.appendChild(a);
     list.appendChild(li);

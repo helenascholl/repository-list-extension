@@ -10,6 +10,10 @@ window.addEventListener('DOMContentLoaded', () => {
     browser.storage.local.set({ access_token: e.target.value })
       .then(checkForErrors);
   });
+
+  document.getElementById('reload').addEventListener('click', () => {
+    listRepositories(true);
+  });
 });
 
 async function init() {

@@ -5,14 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('username').addEventListener('change', e => {
     browser.storage.local.set({ username: e.target.value })
-      .then(() => {
-        checkForErrors()
-          .then(result => {
-            if (!result.error) {
-              document.getElementById('heading').innerText = `${e.target.value}'s Repositories`;
-            }
-          })
-      })
+      .then(checkForErrors);
   });
 
   document.getElementById('access-token').addEventListener('change', e => {

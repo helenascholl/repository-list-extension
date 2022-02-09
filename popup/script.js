@@ -133,6 +133,10 @@ async function listRepositories(repositories = repos) {
   });
 }
 
+function search(query) {
+  listRepositories(repos.filter(repo => repo.name.toLowerCase().includes(query.toLowerCase())));
+}
+
 function log(message) {
   const debug = document.getElementById('debug');
   debug.style.display = 'block';

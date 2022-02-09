@@ -94,7 +94,7 @@ async function listRepositories(reload = false) {
   list.innerHTML = '';
 
   if (!reload) {
-    repositories = await browser.storage.local.get('repositories').repositories;
+    repositories = (await browser.storage.local.get('repositories')).repositories;
   }
 
   if (repositories === undefined) {

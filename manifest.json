@@ -9,7 +9,8 @@
     "96": "icons/git.svg"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "browser_action": {
     "default_icon": "icons/git.svg",

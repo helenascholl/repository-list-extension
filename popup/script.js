@@ -102,10 +102,14 @@ async function listRepositories(reload = false) {
 
   repositories.forEach(repository => {
     const li = document.createElement('li');
+    const a = document.createElement('a');
 
-    li.innerText = repository.owner.login === username
+    a.innerText = repository.owner.login === username
       ? repository.name
       : `${repository.owner.login}/${repository.name}`;
+    a.href = repository.html_url;
+
+    li.appendChild(a);
     list.appendChild(li);
   });
 }

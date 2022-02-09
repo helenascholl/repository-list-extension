@@ -8,6 +8,12 @@
 </head>
 <body>
   <input type="text" id="username" placeholder="GitHub Username">
+  <input type="password" id="access-token" placeholder="GitHub Access Token">
+
   <h1 id="heading"></h1>
+  <ul id="repositories"></ul>
+
+  <p class="error" id="error-no-username">Please enter a GitHub Username</p>
+  <p class="error" id="error-no-access-token">Please provide a GitHub Access Token with the repo scope</p>
 </body>
 </html>
